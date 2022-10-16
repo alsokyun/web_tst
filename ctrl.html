@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        window.addEventListener('keydown', (e) => {
+        
+            
+        if(e.ctrlKey && e.key === 'v'){
+            console.log('CTRL + V');
+        }
+        if(e.metaKey && e.key === 'f'){
+            console.log(`e.key - ${e.key}`)
+            console.log('CTRL + F');
+        }
+
+        });
+
+
+        
+
+
+        function fn_ctrl(){
+            
+            document.body.dispatchEvent(
+                new KeyboardEvent("keydown", {
+                    isTrusted: true,   
+                    key: "f",
+                    ctrlKey: false,
+                    bubbles: true,
+                    metaKey: true,
+                    cancelable: true,   
+                    code: "keyF",   
+                    composed: true,   
+                    keyCode: 70,   
+                    which: 70,   
+                })
+            );
+
+        }
+    </script>
+</head>
+<body>
+    <button onclick="fn_ctrl()">찾기</button>
+</body>
+</html>
