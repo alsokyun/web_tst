@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        function getSelectionText() {
+            var text = "";
+            var activeEl = document.activeElement;
+            var activeElTagName = activeEl ? activeEl.tagName.toLowerCase() : null;
+            if (
+            (activeElTagName == "textarea") || (activeElTagName == "input" &&
+            /^(?:text|search|password|tel|url)$/i.test(activeEl.type)) &&
+            (typeof activeEl.selectionStart == "number")
+            ) {
+                text = activeEl.value.slice(activeEl.selectionStart, activeEl.selectionEnd);
+            } else if (window.getSelection) {
+                text = window.getSelection().toString();
+            }
+            return text;
+        }
+
+        document.onmouseup = document.onkeyup = document.onselectionchange = function() {
+            document.getElementById("sel").value = getSelectionText();
+        }; 
+    </script>
+</head>
+<body>
+    
+    Selection:
+    <br>
+    <textarea id="sel" rows="3" cols="50"></textarea>
+    <p>Please select some text.</p>
+    <input value="Some text in a text input">
+    <br>
+    <input type="search" value="Some text in a search input">
+    <br>
+    <input type="tel" value="4872349749823">
+    <br>
+    <textarea>Some text in a textarea</textarea>
+    
+</body>
+</html>

@@ -6,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
+    <style>
+        .div{
+            height: 200px;
+            overflow-y: auto;
+        }
+    </style>
+
     <script>
         
         document.addEventListener('keydown', (e) => {
@@ -37,7 +44,15 @@
         }
 
         function fn_find(){
-            const r = window.find('대한')
+            // window.find(aString, aCaseSensitive, aBackwards, aWrapAround, aWholeWord, aSearchInFrames, aShowDialog)
+            const r = window.find('무궁화',false,false,true,false,false,true)
+
+            // document.querySelector('#div1').scrollIntoView()
+            // window.getSelection().scrollIntoView()
+            console.log(`window.getSelection() - ${window.getSelection().getRangeAt(0).getBoundingClientRect().top}`)
+            let y = parseInt(window.getSelection().getRangeAt(0).getBoundingClientRect().top) -210
+            let x = parseInt(window.getSelection().getRangeAt(0).getBoundingClientRect().left)
+            document.querySelector('.div').scrollTo(x,y)
         }
     </script>
 </head>
@@ -46,10 +61,7 @@
     <div>
         <button onclick="fn_find()" >찾기</button>
     </div>
-    <div>
-        동해물과 백두산이 마르고 닳토록 하느님이 보우하사 우리 나라만세        <br>
-        무궁화 삼천리 화려강산 대한 사람 대한으로 길이 보전하세
-        동해물과 백두산이 마르고 닳토록 하느님이 보우하사 우리 나라만세        <br>
+    <div class="div" >
         무궁화 삼천리 화려강산 대한 사람 대한으로 길이 보전하세
         동해물과 백두산이 마르고 닳토록 하느님이 보우하사 우리 나라만세        <br>
         무궁화 삼천리 화려강산 대한 사람 대한으로 길이 보전하세
